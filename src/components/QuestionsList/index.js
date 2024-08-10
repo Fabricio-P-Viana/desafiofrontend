@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchQuestions } from '../store/slices/perguntasSlice';
+import { fetchQuestions } from '@/store/slices/perguntasSlice';
 
 const QuestionsList = () => {
   const dispatch = useDispatch();
   
-  // Corrigido para acessar o estado correto
   const questions = useSelector((state) => state.perguntas.questions);
   const status = useSelector((state) => state.perguntas.status);
 
