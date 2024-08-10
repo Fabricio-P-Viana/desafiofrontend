@@ -9,7 +9,6 @@ export const Nav = styled.nav`
     justify-content: center;
     a{
         color: #fff;
-        margin: 0 10px 0 0;
         font-weight: bold;
     }
 `;

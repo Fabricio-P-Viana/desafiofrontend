@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllPerguntas } from '@/services/perguntas';
+import { getAllPerguntasbyCanalId } from '@/services/perguntas';
 
 const initialState = {
   questions: [],
@@ -7,9 +7,8 @@ const initialState = {
   error: null,
 };
 
-export const fetchQuestions = createAsyncThunk('perguntas/fetchPerguntas', async () => {
-  const response = await getAllPerguntas();
-  return response;
+export const fetchQuestions = createAsyncThunk('perguntas/fetch', async (canalId) => {
+  return await getAllPerguntasbyCanalId(canalId);
 });
 
 const perguntasSlice = createSlice({

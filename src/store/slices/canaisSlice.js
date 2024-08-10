@@ -7,9 +7,10 @@ const initialState = {
   error: null,
 };
 
-export const fetchResponses = createAsyncThunk('canais/fetchCanais', async () => {
-    return await getAllCanais();
+export const fetchChannels = createAsyncThunk('canais/fetch', async () => {
+  return await getAllCanais();
 });
+
 
 const channelsSlice = createSlice({
   name: 'canais',
@@ -30,14 +31,14 @@ const channelsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchResponses.pending, (state) => {
+      .addCase(fetchChannels.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchResponses.fulfilled, (state, action) => {
+      .addCase(fetchChannels.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.channels = action.payload;
       })
-      .addCase(fetchResponses.rejected, (state, action) => {
+      .addCase(fetchChannels.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

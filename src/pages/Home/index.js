@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
-import QuestionsList from "@/components/QuestionsList";
+import Header from '@/components/Header';
+import ChannelsList from '@/components/ChannelList';
 
 export default function Home() {
-    return (
-        <>        
-            <Header/>
-            <QuestionsList/>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <ChannelsList />
+    </>
+  );
 }

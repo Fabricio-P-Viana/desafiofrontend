@@ -35,13 +35,14 @@ const responsesSlice = createSlice({
       })
       .addCase(fetchResponses.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.channels = action.payload;
+        state.responses = action.payload;
       })
       .addCase(fetchResponses.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   }
+  
 });
 
 export const { addResponse, removeResponse, updateResponse } = responsesSlice.actions;
