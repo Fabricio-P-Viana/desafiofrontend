@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { RatingContainer, Star } from "./styles";
+import toastr from "toastr";
+import { RatingContainer, Star, Modal, Button } from "./styles";
 
 const RatingInput = ({ value, onChange }) => {
   const [hoverValue, setHoverValue] = useState(null);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [feedback, setFeedback] = useState("");
 
   const handleClick = (rating) => {
-    onChange(rating);
+    if (rating <= 6) {
+      setShowFeedbackModal(true);
+    } else {
+      toastr.success("Obrigado pelo seu feedback!");
+    }
   };
 
   const handleMouseEnter = (rating) => {
@@ -14,6 +21,11 @@ const RatingInput = ({ value, onChange }) => {
 
   const handleMouseLeave = () => {
     setHoverValue(null);
+  };
+
+  const handleFeedbackSubmit = () => {
+    toastr.success("Obrigado pelo seu feedback!");
+    setShowFeedbackModal(false);
   };
 
   return (
@@ -36,6 +48,20 @@ const RatingInput = ({ value, onChange }) => {
         );
       })}
       <span>{hoverValue}</span>
+
+      {showFeedbackModal && (
+        <Modal>
+          <h2>Por favor, nos dê um feedback</h2>
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            rows="4"
+            cols="50"
+          />
+          <Button onClick={handleFeedbackSubmit}>Enviar Feedback</Button>
+          <Button onClick={() => setShowFeedbackModal(false)}>Cancelar</Button>
+        </Modal>
+      )}
     </RatingContainer>
   );
 };

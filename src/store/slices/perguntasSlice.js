@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllPerguntas } from '@/services/perguntas';
+import { createNewPergunta, getAllPerguntas } from '@/services/perguntas';
+import { createCanal } from '@/services/canais';
 
 const initialState = {
   questions: [],
@@ -9,6 +10,13 @@ const initialState = {
 
 export const fetchQuestions = createAsyncThunk('perguntas/fetch', async (canalId) => {
   return await getAllPerguntas();
+});
+
+export const addNewQuestion = createAsyncThunk('canais/addNewQuestion', async ({texto, canalId}, { dispatch }) => {
+  const NewQuestion = await createNewPergunta(texto,canalId);
+  // console.log(texto,canalId);
+  dispatch(addQuestion(texto,canalId));
+  return NewQuestion;
 });
 
 const perguntasSlice = createSlice({
@@ -38,6 +46,17 @@ const perguntasSlice = createSlice({
         state.questions = action.payload;
       })
       .addCase(fetchQuestions.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(addNewQuestion.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addNewQuestion.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.questions.push(action.payload);
+      })
+      .addCase(addNewQuestion.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

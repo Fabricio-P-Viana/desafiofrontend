@@ -1,23 +1,33 @@
+import { useState } from 'react';
 import { FaHome } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { Nav } from "./styles";
+import { ButtonCreateChannel, Nav } from "./styles";
 import { addNewChannel } from '@/store/slices/canaisSlice';
+import ModalChannel from '../ModalChannel';
 
 function Header() {
     const dispatch = useDispatch();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleCreateChannel = () => {
-        const name = prompt('Digite o nome do canal:');
-        if (name) {
-            dispatch(addNewChannel(name));
-        }
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
+    const handleCreateChannel = (name) => {
+        dispatch(addNewChannel(name));
+        handleCloseModal();
     };
 
     return (
-        <Nav>
-            <a href="#"><FaHome size={24}/></a>
-            <button onClick={handleCreateChannel}>Criar canal</button>
-        </Nav>
+        <>
+            <Nav>
+                <a href="#"><FaHome size={24}/></a>
+                <ButtonCreateChannel onClick={handleOpenModal}>+ Canal</ButtonCreateChannel>
+            </Nav>
+            <ModalChannel 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal} 
+                onSubmit={handleCreateChannel} 
+            />
+        </>
     );
 }
 

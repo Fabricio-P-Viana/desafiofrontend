@@ -4,6 +4,7 @@ import { theme } from '../styles/theme';
 import { Provider } from 'react-redux';
 import store from '../store/index';
 import Home from './Home';
+import 'toastr/build/toastr.min.css'; 
 
 function App() {
     return (

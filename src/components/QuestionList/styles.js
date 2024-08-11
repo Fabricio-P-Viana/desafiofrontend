@@ -41,3 +41,13 @@ export const LoadingMessage = styled.p`
   color: ${theme.colors.primary};
   text-align: center;
 `;
+export const ButtonCreateQuestion = styled.button`
+    background: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+`;

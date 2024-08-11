@@ -10,3 +10,8 @@ export const getAllPerguntasbyCanalId = async (canalId) => {
     
     return response.data;
 };
+
+export const createNewPergunta = async (texto,canalId) => {
+    const response = await api.post('/perguntas', { texto,canalId });
+    return response.data;
+};
