@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchChannels } from '@/store/slices/canaisSlice';
-import ChannelCard from '../ChannelCard';
+import ChannelCard from '../../Cards/Channel';
 import { fetchQuestions } from '@/store/slices/perguntasSlice';
 import { fetchResponses } from '@/store/slices/respostasSlice';
 import { CenteredContainer } from './styles';
+import { EmptyMessage, ErrorMessage, LoadingMessage } from '@/styles/globals';
 
 const ChannelsList = () => {
   const dispatch = useDispatch();
@@ -31,15 +32,15 @@ const ChannelsList = () => {
   
   return (
     <CenteredContainer>
-      {status === 'loading' && <p>Carregando Canais...</p>}
+      {status === 'loading' && <LoadingMessage>Carregando Canais...</LoadingMessage>}
       {status === 'succeeded' && channels && Array.isArray(channels) && channels.length > 0 ? (
         channels.map((channel) => (
           <ChannelCard key={channel.id} channel={channel} />
         ))
       ) : (
-        <p>Sem Canais Disponíveis.</p>
+        <EmptyMessage>Sem Canais Disponíveis.</EmptyMessage>
       )}
-      {status === 'failed' && <p>Erro ao Carregar Canais.</p>}
+      {status === 'failed' && <ErrorMessage>Erro ao Carregar Canais.</ErrorMessage>}
     </CenteredContainer>
   );
 };

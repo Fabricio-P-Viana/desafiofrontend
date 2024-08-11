@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${theme.colors.background};
   }
 `;
+
 export const CloseButton = styled.button`
     background: ${theme.colors.primary};
     border: none;
@@ -19,6 +20,7 @@ export const CloseButton = styled.button`
     cursor: pointer;
     float: right;
 `;
+
 export const Overlay = styled.div`
     position: fixed;
     top: 0;
@@ -47,4 +49,19 @@ export const Input = styled.input`
     margin-top: 10px;
     border: 1px solid ${theme.colors.border};
     border-radius: 4px;
+`;
+
+export const EmptyMessage = styled.p`
+  color: ${theme.colors.text}; 
+  text-align: center; 
+`;
+
+export const ErrorMessage = styled.p`
+  color: ${theme.colors.error}; 
+  text-align: center;
+`;
+
+export const LoadingMessage = styled.p`
+  color: ${theme.colors.primary};
+  text-align: center;
 `;

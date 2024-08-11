@@ -1,4 +1,4 @@
-import { getAllRespostas } from '@/services/respostas';
+import { createNewResposta, getAllRespostas } from '@/services/respostas';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -8,7 +8,13 @@ const initialState = {
 };
 
 export const fetchResponses = createAsyncThunk('respostas/fetchRespostas', async () => {
-    return await getAllRespostas();
+  return await getAllRespostas();
+});
+
+export const addNewResponse = createAsyncThunk('resposta/addNewResponse', async ({ texto, nota, questionId }, { dispatch }) => {
+  const newResponse = await createNewResposta(texto, nota, questionId);
+  dispatch(addResponse(texto, nota, questionId));
+  return newResponse;
 });
 
 const responsesSlice = createSlice({
@@ -40,9 +46,19 @@ const responsesSlice = createSlice({
       .addCase(fetchResponses.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(addNewResponse.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addNewResponse.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.responses.push(action.payload);
+      })
+      .addCase(addNewResponse.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   }
-  
 });
 
 export const { addResponse, removeResponse, updateResponse } = responsesSlice.actions;

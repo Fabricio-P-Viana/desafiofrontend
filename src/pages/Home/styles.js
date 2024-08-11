@@ -1,5 +1,5 @@
 const { styled } = require("styled-components");
 
-const Home = styled.div`
+export const HomeContainer = styled.div`
 
 `;

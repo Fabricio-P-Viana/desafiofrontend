@@ -2,10 +2,12 @@ import { useState } from "react";
 import { SubmitQuestionButton } from "./styles";
 import { CloseButton, Input, ModalContainer, Overlay } from "@/styles/globals";
 
+import toastr from "toastr";
 
 const ModalQuestion = ({ isOpen, onClose, onSubmit }) => {
     const [texto, setTexto] = useState('');
     const handleSubmit = () => {
+        if(texto.length <= 0) return toastr.info("Campo de Questão esta vazio!");
         if (texto) {
             onSubmit(texto);
             setTexto('');

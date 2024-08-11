@@ -14,7 +14,6 @@ export const fetchQuestions = createAsyncThunk('perguntas/fetch', async (canalId
 
 export const addNewQuestion = createAsyncThunk('canais/addNewQuestion', async ({texto, canalId}, { dispatch }) => {
   const NewQuestion = await createNewPergunta(texto,canalId);
-  // console.log(texto,canalId);
   dispatch(addQuestion(texto,canalId));
   return NewQuestion;
 });

@@ -1,5 +1,5 @@
 import { CardContainer, ChannelName } from "./styles";
-import QuestionsList from "../QuestionList";
+import QuestionsList from "../../Lists/Question";
 
 const ChannelCard = ({ channel }) => {  
   return (

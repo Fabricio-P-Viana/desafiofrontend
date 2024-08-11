@@ -3,7 +3,7 @@ import { FaHome } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ButtonCreateChannel, Nav } from "./styles";
 import { addNewChannel } from '@/store/slices/canaisSlice';
-import ModalChannel from '../ModalChannel';
+import ModalChannel from '../Modals/Channel';
 
 function Header() {
     const dispatch = useDispatch();

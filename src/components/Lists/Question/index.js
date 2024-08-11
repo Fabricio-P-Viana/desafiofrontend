@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { QuestionCard } from '../QuestionCard';
-import { QuestionsContainer, QuestionsListContainer, EmptyMessage, ErrorMessage, LoadingMessage, ButtonCreateQuestion } from './styles';
+import { QuestionCard } from '../../Cards/Question';
+import { QuestionsContainer, QuestionsListContainer, ButtonCreateQuestion } from './styles';
 import { useState } from 'react';
-import ModalQuestion from '@/ModalQuestion';
+import ModalQuestion from '@/components/Modals/Question';
 import { addNewQuestion } from '@/store/slices/perguntasSlice';
+import toastr from 'toastr';
+import { EmptyMessage, ErrorMessage, LoadingMessage } from '@/styles/globals';
 
 const QuestionsList = ({ canalId }) => {
   const questions = useSelector((state) => state.perguntas.questions);
@@ -16,6 +18,7 @@ const QuestionsList = ({ canalId }) => {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
   const handleCreateQuestion = (texto) => {
+      toastr.success("Questão criada com sucesso!");
       dispatch(addNewQuestion({texto,canalId}));
       handleCloseModal();
   };

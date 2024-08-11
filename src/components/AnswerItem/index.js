@@ -6,13 +6,19 @@ const AnswerItem = ({ questionId }) => {
   const status = useSelector((state) => state.respostas.status);
   const filteredAnswers = answers.filter((answer) => answer.perguntaId === questionId);
 
+  const renderStars = (nota) => {
+    return Array.from({ length: nota }, (_, index) => (
+      <span key={index}>★</span>
+    ));
+  };
+
   return (
     <div>
       {status === 'loading' && <p>Carregando...</p>}
       {status === 'succeeded' && filteredAnswers.length > 0 ? (
         filteredAnswers.map((answer) => (
           <AnswerContainer key={answer.id}>
-            <AnswerScore>{answer.nota} estrelas</AnswerScore>
+            <AnswerScore>{renderStars(answer.nota)}</AnswerScore>
             <AnswerText>{answer.texto}</AnswerText>
           </AnswerContainer>
         ))

@@ -12,13 +12,13 @@ export const AnswerContainer = styled.li`
 `;
 
 export const AnswerScore = styled.div`
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: ${theme.colors.primary};
 `;
 
 export const AnswerText = styled.div`
-  font-size: 1rem;
+  font-size: .7rem;
   color: #333; 
   margin-top: 5px;
 `;

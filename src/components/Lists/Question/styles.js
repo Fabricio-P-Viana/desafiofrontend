@@ -2,7 +2,6 @@ import { theme } from '@/styles/theme';
 import styled from 'styled-components';
 
 export const QuestionsContainer = styled.div`
-  padding: 10px;
   max-width: 800px;
   margin: 0 auto; 
 `;
@@ -15,7 +14,7 @@ export const QuestionsListContainer = styled.ul`
 
 export const QuestionContainer = styled.li`
   margin-bottom: 15px; 
-  padding: 10px;
+  padding: 10px 0;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: ${theme.colors.secondary};
@@ -27,20 +26,6 @@ export const QuestionText = styled.h3`
   color: ${theme.colors.primary}; 
 `;
 
-export const EmptyMessage = styled.p`
-  color: ${theme.colors.text}; 
-  text-align: center; 
-`;
-
-export const ErrorMessage = styled.p`
-  color: ${theme.colors.error}; 
-  text-align: center;
-`;
-
-export const LoadingMessage = styled.p`
-  color: ${theme.colors.primary};
-  text-align: center;
-`;
 export const ButtonCreateQuestion = styled.button`
     background: ${theme.colors.primary};
     color: ${theme.colors.secondary};

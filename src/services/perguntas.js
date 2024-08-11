@@ -5,12 +5,6 @@ export const getAllPerguntas = async () => {
     return response.data;
 };
 
-export const getAllPerguntasbyCanalId = async (canalId) => {
-    const response = await api.get(`/perguntas/${canalId}`);
-    
-    return response.data;
-};
-
 export const createNewPergunta = async (texto,canalId) => {
     const response = await api.post('/perguntas', { texto,canalId });
     return response.data;
