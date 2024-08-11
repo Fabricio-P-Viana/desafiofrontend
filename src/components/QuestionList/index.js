@@ -1,33 +1,26 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchQuestions } from '@/store/slices/perguntasSlice';
+import { useSelector } from 'react-redux';
 import { QuestionCard } from '../QuestionCard';
+import { QuestionsContainer, QuestionsListContainer, EmptyMessage, ErrorMessage, LoadingMessage } from './styles';
 
 const QuestionsList = ({ canalId }) => {
-  const dispatch = useDispatch();
   const questions = useSelector((state) => state.perguntas.questions);
   const status = useSelector((state) => state.perguntas.status);
-  
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchQuestions(canalId)); 
-    }
-  }, [status, dispatch, canalId]);
+  const filteredQuestions = questions.filter((question) => question.canalId === canalId);
+
   return (
-    <div>
-      {status === 'loading' && <p>Carregando...</p>}
-      {status === 'succeeded' && questions.length > 0 ? (
-        <ul>
-          {questions.map((question) => (
-            
+    <QuestionsContainer>
+      {status === 'loading' && <LoadingMessage>Carregando...</LoadingMessage>}
+      {status === 'succeeded' && filteredQuestions.length > 0 ? (
+        <QuestionsListContainer>
+          {filteredQuestions.map((question) => (
             <QuestionCard key={question.id} question={question} />
           ))}
-        </ul>
+        </QuestionsListContainer>
       ) : (
-        <p>Sem perguntas Disponíveis.</p>
+        status !== 'loading' && <EmptyMessage>Sem perguntas Disponíveis.</EmptyMessage>
       )}
-      {status === 'failed' && <p>Erro ao carregar as perguntas.</p>}
-    </div>
+      {status === 'failed' && <ErrorMessage>Erro ao carregar as perguntas.</ErrorMessage>}
+    </QuestionsContainer>
   );
 };
 

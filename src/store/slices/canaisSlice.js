@@ -1,4 +1,4 @@
-import { getAllCanais } from '@/services/canais';
+import { createCanal, getAllCanais } from '@/services/canais';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -11,6 +11,11 @@ export const fetchChannels = createAsyncThunk('canais/fetch', async () => {
   return await getAllCanais();
 });
 
+export const addNewChannel = createAsyncThunk('canais/addNewChannel', async (nome, { dispatch }) => {
+  const newChannel = await createCanal(nome);
+  dispatch(addChannel(newChannel));
+  return newChannel;
+});
 
 const channelsSlice = createSlice({
   name: 'canais',
@@ -39,6 +44,17 @@ const channelsSlice = createSlice({
         state.channels = action.payload;
       })
       .addCase(fetchChannels.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(addNewChannel.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addNewChannel.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.channels.push(action.payload);
+      })
+      .addCase(addNewChannel.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
