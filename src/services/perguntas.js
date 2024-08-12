@@ -9,3 +9,8 @@ export const createNewPergunta = async (texto,canalId) => {
     const response = await api.post('/perguntas', { texto,canalId });
     return response.data;
 };
+
+export const deletePergunta = async (perguntaId) => {
+    const response = await api.delete(`/perguntas/${perguntaId}`);
+    return response.data;
+};

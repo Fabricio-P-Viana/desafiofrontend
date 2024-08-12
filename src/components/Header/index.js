@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FaHome } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { ButtonCreateChannel, Nav } from "./styles";
 import { addNewChannel } from '@/store/slices/canaisSlice';
@@ -19,7 +18,6 @@ function Header() {
     return (
         <>
             <Nav>
-                <a href="#"><FaHome size={24}/></a>
                 <ButtonCreateChannel onClick={handleOpenModal}>+ Canal</ButtonCreateChannel>
             </Nav>
             <ModalChannel 

@@ -14,9 +14,6 @@ export const CardContainer = styled.div`
   max-width: 800px;
   width: 90%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-height : 300px;
-  overflow: auto;
-  overflow-y: scroll;
 `;
 
 export const ChannelName = styled.h2`
@@ -24,4 +21,6 @@ export const ChannelName = styled.h2`
   font-size: 1.5rem;
   color: ${theme.colors.primary}; 
   font-weight: bold; 
+  white-space: pre-wrap;
+  word-break: break-word;
 `;

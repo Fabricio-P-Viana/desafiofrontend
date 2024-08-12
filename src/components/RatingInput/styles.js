@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RatingContainer = styled.div`
-  display: flex;
+  display: flexbox;
   align-items: center;
   position: relative;
 `;
