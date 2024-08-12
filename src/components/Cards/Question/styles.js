@@ -3,16 +3,15 @@ import styled from 'styled-components';
 
 
 export const CardContainerQuestion = styled.div`
-  border-bottom: 5px solid #ddd;
   padding: 5px 10px;
   margin-bottom: 10px;
   background-color: ${theme.colors.secondary};
 `;
 
 export const QuestionName = styled.h3`
-    margin-bottom: 5px;
+    margin: 5px 0 10px 0;
     padding: 10px;
-    border-bottom: 3px solid #ddd;
+    font-size: .9rem;
     white-space: pre-wrap;
     word-break: break-word;
 `;

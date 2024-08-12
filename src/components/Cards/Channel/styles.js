@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   display: flexbox;
   flex-direction: row; 
   align-items: flex-start; 
-  border: 1px solid #ddd;
+
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;

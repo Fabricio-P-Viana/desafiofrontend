@@ -3,17 +3,19 @@ import styled from 'styled-components';
 
 export const AnswerCard = styled.li`
   padding: 10px;
-  border-bottom: 1px solid #ddd;
   margin-bottom: 5px;
-  background-color: ${theme.colors.secondary}; 
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid white;
+  border-radius: 4px;
 `;
 
 export const AnswerContainer= styled.div`
   max-height: 150px;
   overflow: auto;
+  background-color: #dedede;
   overflow-y: auto;
+  border-radius: 4px;
   &::-webkit-scrollbar{
     display: none;
   }
