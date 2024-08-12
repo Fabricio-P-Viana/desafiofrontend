@@ -7,12 +7,13 @@ export const RatingContainer = styled.div`
 `;
 
 export const Star = styled.span`
-  font-size: 1.5rem;
-  color: ${props => (props.isActive ? '#FFD700' : '#ddd')}; 
+  font-size: 2rem;
+  color: ${({ className }) => (className === 'active' ? '#FFD700' : '#ddd')};
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
-  &:hover {
-    color: #ffc107;
+
+  &:hover,
+  &:hover ~ & {
+    color: '#FFD700';
   }
 `;
 

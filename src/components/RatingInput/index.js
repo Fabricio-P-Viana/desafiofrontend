@@ -1,9 +1,9 @@
 import { useState } from "react";
 import toastr from "toastr";
-import { RatingContainer, Star, Button } from "./styles";
-import { Input, ModalContainer, Overlay } from "@/styles/globals";
+import { Button, RatingContainer, Star } from "./styles";
 import { useDispatch } from "react-redux";
 import { addNewResponse } from "@/store/slices/respostasSlice";
+import { Input, ModalContainer, Overlay } from "@/styles/globals";
 
 const RatingInput = ({ value, questionId }) => {
   const [hoverValue, setHoverValue] = useState(null);
@@ -28,16 +28,16 @@ const RatingInput = ({ value, questionId }) => {
     if(feedback.length <= 0) return toastr.info("Campo de feedback vazio!");
 
     toastr.success("Obrigado pelo seu feedback!");
-
     dispatch(addNewResponse({ texto: feedback, nota: hoverValue, questionId }));
     setShowFeedbackModal(false);
+    setHoverValue(0);
   };
 
   return (
     <RatingContainer>
       {[...Array(11).keys()].map((_, index) => {
         if (index === 0 && value === 0) {
-          return null; 
+          return null;
         }
         const isActive = index <= (hoverValue ?? value);
         return (
@@ -54,18 +54,18 @@ const RatingInput = ({ value, questionId }) => {
 
       {showFeedbackModal && (
         <Overlay>
-          <ModalContainer>
-            <h2>Nos dê um feedback!</h2>
-            <Input
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-            />
-            <Button onClick={handleFeedbackSubmit}>Enviar Feedback</Button>
-            <Button onClick={() => setShowFeedbackModal(false)}>Cancelar</Button>
-          </ModalContainer>
-        </Overlay>
-      )}
-    </RatingContainer>
+        <ModalContainer>
+          <h2>Nos dê um feedback!</h2>
+          <Input
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+          />
+          <Button onClick={handleFeedbackSubmit}>Enviar Feedback</Button>
+          <Button onClick={() => setShowFeedbackModal(false)}>Cancelar</Button>
+        </ModalContainer>
+      </Overlay>
+    )}
+  </RatingContainer>
   );
 };
 

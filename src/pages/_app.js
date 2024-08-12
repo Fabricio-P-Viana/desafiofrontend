@@ -6,6 +6,7 @@ import store from '../store/index';
 import Home from './Home';
 import 'toastr/build/toastr.min.css'; 
 import Head from 'next/head';
+
 function App() {
     return (
         <Provider store={store}>
